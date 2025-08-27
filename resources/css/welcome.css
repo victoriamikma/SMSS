@@ -1,0 +1,96 @@
+
+    :root {
+        --primary-orange: #ff6b35;
+        --orange-light: #ff9e1b;
+        --orange-dark: #e94e1b;
+        --orange-pale: #fff5f0;
+        --gray-dark: #2d3748;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+    }
+    
+    /* Navigation */
+    nav {
+        background-color: white;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Hero Section */
+    .hero-gradient {
+        background: linear-gradient(135deg, var(--primary-orange) 0%, var(--orange-light) 100%);
+        text-align: center;
+        padding: 6rem 1rem;
+    }
+    
+    /* Features Section */
+    .feature-icon {
+        background-color: rgba(255, 107, 53, 0.1);
+        color: var(--primary-orange);
+    }
+    
+    /* Cards */
+    .flow-root {
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+    
+    .flow-root:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Buttons */
+    .btn-orange {
+        background-color: var(--primary-orange);
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-orange:hover {
+        background-color: var(--orange-dark);
+        transform: translateY(-2px);
+    }
+    
+    .btn-outline-orange {
+        border: 2px solid var(--primary-orange);
+        color: var(--primary-orange);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-orange:hover {
+        background-color: var(--primary-orange);
+        color: white;
+    }
+    
+    /* Call to Action */
+    .bg-indigo-50 {
+        background-color: var(--orange-pale);
+        text-align: center;
+    }
+    
+    /* Footer */
+    footer {
+        background-color: var(--gray-dark);
+        text-align: center;
+    }
+    
+    /* Utility Classes */
+    .text-orange {
+        color: var(--primary-orange);
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+    
+    .max-w-7xl {
+        max-width: 80rem;
+    }
+    
+    .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+    }

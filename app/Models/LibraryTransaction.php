@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class LibraryTransaction extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'book_id', 'student_id', 'borrowed_date', 
+        'due_date', 'returned_at'
+    ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+}
