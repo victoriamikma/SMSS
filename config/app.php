@@ -103,6 +103,8 @@ return [
         ...array_filter(
             explode(',', (string) env('APP_PREVIOUS_KEYS', ''))
         ),
+        // Remove the incorrect line below
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*

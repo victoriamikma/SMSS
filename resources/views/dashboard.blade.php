@@ -9,13 +9,13 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <style>
         :root {
             --primary-orange: #FF6B00;
@@ -30,21 +30,21 @@
             --warning-red: #F44336;
             --info-blue: #2196F3;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         .dashboard {
             min-height: 100vh;
             background-color: var(--light-gray);
             display: flex;
             flex-direction: column;
         }
-        
+
         /* Header */
         .dashboard-header {
             background-color: var(--white);
@@ -57,28 +57,28 @@
             top: 0;
             z-index: 100;
         }
-        
+
         .header-left h1 {
             font-size: 1.5rem;
             color: var(--black);
         }
-        
+
         .swift {
             color: var(--primary-orange);
             font-weight: 700;
         }
-        
+
         .solve {
             color: var(--black);
             font-weight: 700;
         }
-        
+
         .header-left p {
             color: var(--black);
             opacity: 0.7;
             font-size: 0.9rem;
         }
-        
+
         .user-profile {
             display: flex;
             align-items: center;
@@ -86,21 +86,21 @@
             position: relative;
             padding-right: 1.5rem;
         }
-        
+
         .user-profile img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
         }
-        
+
         .settings-icon {
             position: absolute;
             right: 0;
             color: var(--dark-gray);
             cursor: pointer;
         }
-        
+
         /* Quick Stats */
         .quick-stats {
             display: grid;
@@ -108,7 +108,7 @@
             gap: 1rem;
             padding: 1.5rem;
         }
-        
+
         .stat-card {
             background-color: var(--white);
             border-radius: 8px;
@@ -119,16 +119,16 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
-        
+
         .stat-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .stat-card.alert {
             border-left: 4px solid var(--warning-red);
         }
-        
+
         .stat-icon {
             width: 50px;
             height: 50px;
@@ -138,54 +138,54 @@
             justify-content: center;
             color: white;
         }
-        
+
         .stat-icon.students {
             background-color: var(--info-blue);
         }
-        
+
         .stat-icon.staff {
             background-color: var(--primary-orange);
         }
-        
+
         .stat-icon.finance {
             background-color: var(--success-green);
         }
-        
+
         .stat-icon.library {
             background-color: #9C27B0;
         }
-        
+
         .stat-icon.attendance {
             background-color: #3F51B5;
         }
-        
+
         .stat-icon.alert {
             background-color: var(--warning-red);
         }
-        
+
         .stat-icon.expenses {
             background-color: #FF5722;
         }
-        
+
         .stat-info h3 {
             font-size: 1rem;
             color: var(--black);
             opacity: 0.8;
             margin-bottom: 0.3rem;
         }
-        
+
         .stat-info p {
             font-size: 1.3rem;
             font-weight: 600;
             color: var(--black);
         }
-        
+
         .trend {
             font-size: 0.9rem;
             color: var(--success-green);
             font-weight: normal;
         }
-        
+
         /* Dashboard Content */
         .dashboard-content {
             padding: 0 1.5rem 1.5rem;
@@ -194,13 +194,13 @@
             gap: 1.5rem;
             flex: 1;
         }
-        
+
         @media (min-width: 992px) {
             .dashboard-content {
                 grid-template-columns: 2fr 1fr;
             }
         }
-        
+
         /* Quick Links */
         .quick-links {
             background-color: var(--white);
@@ -208,7 +208,7 @@
             padding: 1.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-        
+
         .quick-links h2 {
             color: var(--black);
             margin-bottom: 1.5rem;
@@ -216,13 +216,13 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .modules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 1rem;
         }
-        
+
         .module-card {
             background-color: var(--light-orange);
             border-radius: 8px;
@@ -237,29 +237,29 @@
             position: relative;
             cursor: pointer;
         }
-        
+
         .module-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(255, 107, 0, 0.1);
             background-color: var(--secondary-orange);
             color: white;
         }
-        
+
         .module-card:hover .module-icon {
             color: white;
         }
-        
+
         .module-icon {
             font-size: 1.8rem;
             color: var(--primary-orange);
             margin-bottom: 0.8rem;
         }
-        
+
         .module-card h3 {
             font-size: 1rem;
             font-weight: 500;
         }
-        
+
         /* Make sure module cards are clickable */
         .module-card::after {
             content: '';
@@ -270,14 +270,14 @@
             bottom: 0;
             z-index: 1;
         }
-        
+
         /* Right Sidebar */
         .right-sidebar {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
-        
+
         /* Upcoming Events & Recent Absences */
         .upcoming-events,
         .recent-absences {
@@ -286,7 +286,7 @@
             padding: 1.5rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-        
+
         .upcoming-events h2,
         .recent-absences h2 {
             color: var(--black);
@@ -295,19 +295,19 @@
             align-items: center;
             gap: 0.5rem;
         }
-        
+
         .upcoming-events ul,
         .recent-absences ul {
             list-style: none;
         }
-        
+
         .upcoming-events li {
             padding: 1rem 0;
             border-bottom: 1px solid var(--medium-gray);
             display: flex;
             flex-direction: column;
         }
-        
+
         .recent-absences li {
             padding: 0.8rem 0;
             border-bottom: 1px solid var(--medium-gray);
@@ -315,31 +315,31 @@
             grid-template-columns: 2fr 1fr 1fr;
             align-items: center;
         }
-        
+
         .event-date {
             font-weight: 600;
             color: var(--primary-orange);
             font-size: 0.9rem;
         }
-        
+
         .event-name,
         .student-name {
             color: var(--black);
             margin-top: 0.3rem;
         }
-        
+
         .student-class {
             color: var(--dark-gray);
             font-size: 0.9rem;
             text-align: center;
         }
-        
+
         .absence-days {
             color: var(--warning-red);
             font-weight: 600;
             text-align: right;
         }
-        
+
         /* Footer */
         .dashboard-footer {
             background-color: var(--white);
@@ -351,11 +351,11 @@
             border-top: 1px solid var(--medium-gray);
             margin-top: auto;
         }
-        
+
         .dashboard-footer p {
             margin-bottom: 0.3rem;
         }
-        
+
         /* Alert styles */
         .alert {
             padding: 12px 16px;
@@ -363,7 +363,7 @@
             margin: 10px 0;
             font-size: 0.9rem;
         }
-        
+
         .alert-danger {
             background-color: #ffebee;
             color: #c62828;
@@ -377,7 +377,7 @@
         {{ $error }}
     </div>
     @endif
-    
+
     <!-- Header -->
     <header class="dashboard-header">
         <div class="header-left">
@@ -496,7 +496,7 @@
         @php
             $attendancePercentage = 0;
             $trend = 0;
-            
+
             try {
                 $attendance = App\Models\Attendance::whereDate('date', today())->first();
                 if ($attendance && $attendance->total_students > 0) {
@@ -514,7 +514,7 @@
             </div>
             <div class="stat-info">
                 <h3>Today's Attendance</h3>
-                <p>{{ round($attendancePercentage) }}% 
+                <p>{{ round($attendancePercentage) }}%
                     @if($trend != 0)
                     <span class="trend" style="color: {{ $trend > 0 ? 'var(--success-green)' : 'var(--warning-red)' }};">
                         {{ $trend > 0 ? '+'.round($trend) : round($trend) }}%
@@ -623,7 +623,7 @@
                             ->limit(5)
                             ->get();
                     @endphp
-                    
+
                     @forelse($upcomingEvents as $event)
                         <li>
                             <div class="event-date">
@@ -666,7 +666,7 @@
                             Log::error('Error fetching absences: ' . $e->getMessage());
                         }
                     @endphp
-                    
+
                     @forelse($recentAbsences as $absence)
                         <li>
                             <div class="student-name">{{ $absence->student->name ?? 'N/A' }}</div>
@@ -691,6 +691,6 @@
     @vite(['resources/js/app.js'])
 
     <!-- Auto-refresh dashboard every 5 minutes -->
-   
+
 </body>
 </html>
