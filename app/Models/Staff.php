@@ -2,25 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Staff extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'name',
-        'role',
-        'gender',
-        'contact',
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'position',
+        'department',
         'salary',
-        'bank_account',
-        'bank_name',
-        'nssf_number',
-        'tin_number',
-        'last_payment'
+        'hire_date',
+        'profile_picture' // Add this line
     ];
 
-    public function payrolls()
-    {
-        return $this->hasMany(Payroll::class);
-    }
+    protected $casts = [
+        'hire_date' => 'date',
+        'salary' => 'decimal:2'
+    ];
 }
