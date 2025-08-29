@@ -24,6 +24,8 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\TransportController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\LibraryBookController;
+use App\Http\Controllers\LibraryTransactionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -102,6 +104,33 @@ Route::get('/staff/template', [StaffController::class, 'downloadTemplate'])
 
     // Fees routes
     Route::resource('fees', FeesController::class);
+
+    // Library routes
+Route::prefix('library')->name('library.')->group(function () {
+    Route::get('/', [LibraryController::class, 'index'])->name('index');
+    Route::get('/search', [LibraryController::class, 'search'])->name('search');
+    
+    // Books routes
+    Route::prefix('books')->name('books.')->group(function () {
+        Route::get('/', [LibraryBookController::class, 'index'])->name('index');
+        Route::get('/create', [LibraryBookController::class, 'create'])->name('create');
+        Route::post('/', [LibraryBookController::class, 'store'])->name('store');
+        Route::get('/{book}', [LibraryBookController::class, 'show'])->name('show');
+        Route::get('/{book}/edit', [LibraryBookController::class, 'edit'])->name('edit');
+        Route::put('/{book}', [LibraryBookController::class, 'update'])->name('update');
+        Route::delete('/{book}', [LibraryBookController::class, 'destroy'])->name('destroy');
+        
+        // Bulk import routes
+        Route::get('/import', [LibraryBookController::class, 'import'])->name('import');
+        Route::post('/import', [LibraryBookController::class, 'processImport'])->name('import.process');
+        Route::get('/template', [LibraryBookController::class, 'downloadTemplate'])->name('template');
+    });
+    
+    // Transactions routes
+    Route::resource('transactions', LibraryTransactionController::class);
+    Route::post('transactions/{id}/return', [LibraryTransactionController::class, 'returnBook'])
+        ->name('transactions.return');
+});
 
     // Other resource routes (only if you have the full CRUD implemented)
     Route::resource('students', StudentController::class);
