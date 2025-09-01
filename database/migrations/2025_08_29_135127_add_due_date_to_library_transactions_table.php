@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('library_transactions', function (Blueprint $table) {
-            $table->date('due_date')->after('borrowed_date')->nullable();
-            $table->timestamp('returned_at')->after('due_date')->nullable();
-        });
+       Schema::table('library_transactions', function (Blueprint $table) {
+    $table->date('due_date')->nullable()->after('borrowed_at');
+});
     }
 
     /**
