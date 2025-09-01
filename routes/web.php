@@ -26,6 +26,7 @@ use App\Http\Controllers\TransportController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\LibraryBookController;
 use App\Http\Controllers\LibraryTransactionController;
+use App\Http\Controllers\SubjectController; // ADD THIS LINE
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,6 +42,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
 
+    // Subject routes - ADD THIS SECTION
+    Route::resource('subjects', SubjectController::class);
+
     // Staff routes
     Route::prefix('staff')->group(function () {
         Route::get('/', [StaffController::class, 'index'])->name('staff.index');
@@ -52,21 +56,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{staff}', [StaffController::class, 'destroy'])->name('staff.destroy');
 
         // Import/Export routes
-      Route::get('/staff/import-export', [StaffController::class, 'importExport'])
-     ->name('staff.import-export')
-     ->middleware('auth');
-
-Route::get('/staff/export', [StaffController::class, 'export'])
-     ->name('staff.export')
-     ->middleware('auth');
-
-Route::post('/staff/import', [StaffController::class, 'import'])
-     ->name('staff.import')
-     ->middleware('auth');
-
-Route::get('/staff/template', [StaffController::class, 'downloadTemplate'])
-     ->name('staff.template')
-     ->middleware('auth');
+        Route::get('/staff/import-export', [StaffController::class, 'importExport'])->name('staff.import-export');
+        Route::get('/staff/export', [StaffController::class, 'export'])->name('staff.export');
+        Route::post('/staff/import', [StaffController::class, 'import'])->name('staff.import');
+        Route::get('/staff/template', [StaffController::class, 'downloadTemplate'])->name('staff.template');
     });
 
     // Applications routes
@@ -89,7 +82,7 @@ Route::get('/staff/template', [StaffController::class, 'downloadTemplate'])
     Route::get('/reports', [ReportsController::class, 'index'])->name('reports.index');
     Route::get('/security', [SecurityController::class, 'index'])->name('security.index');
     Route::get('/messaging', [MessagingController::class, 'index'])->name('messaging.index');
-     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
     Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
     Route::get('/exams', [ExamController::class, 'index'])->name('exams.index');
     Route::get('/parents', [ParentController::class, 'index'])->name('parents.index');
@@ -106,37 +99,36 @@ Route::get('/staff/template', [StaffController::class, 'downloadTemplate'])
     Route::resource('fees', FeesController::class);
 
     // Library routes
-Route::prefix('library')->name('library.')->group(function () {
-    Route::get('/', [LibraryController::class, 'index'])->name('index');
-    Route::get('/search', [LibraryController::class, 'search'])->name('search');
-    
-    // Books routes
-    Route::prefix('books')->name('books.')->group(function () {
-        Route::get('/', [LibraryBookController::class, 'index'])->name('index');
-        Route::get('/create', [LibraryBookController::class, 'create'])->name('create');
-        Route::post('/', [LibraryBookController::class, 'store'])->name('store');
-        Route::get('/{book}', [LibraryBookController::class, 'show'])->name('show');
-        Route::get('/{book}/edit', [LibraryBookController::class, 'edit'])->name('edit');
-        Route::put('/{book}', [LibraryBookController::class, 'update'])->name('update');
-        Route::delete('/{book}', [LibraryBookController::class, 'destroy'])->name('destroy');
-        
-        // Bulk import routes
-        Route::get('/import', [LibraryBookController::class, 'import'])->name('import');
-        Route::post('/import', [LibraryBookController::class, 'processImport'])->name('import.process');
-        Route::get('/template', [LibraryBookController::class, 'downloadTemplate'])->name('template');
-    });
-    
-    // Transactions routes
-    Route::resource('transactions', LibraryTransactionController::class);
-    Route::post('transactions/{id}/return', [LibraryTransactionController::class, 'returnBook'])
-        ->name('transactions.return');
-});
+    Route::prefix('library')->name('library.')->group(function () {
+        Route::get('/', [LibraryController::class, 'index'])->name('index');
+        Route::get('/search', [LibraryController::class, 'search'])->name('search');
 
-    // Other resource routes (only if you have the full CRUD implemented)
+        // Books routes
+        Route::prefix('books')->name('books.')->group(function () {
+            Route::get('/', [LibraryBookController::class, 'index'])->name('index');
+            Route::get('/create', [LibraryBookController::class, 'create'])->name('create');
+            Route::post('/', [LibraryBookController::class, 'store'])->name('store');
+            Route::get('/{book}', [LibraryBookController::class, 'show'])->name('show');
+            Route::get('/{book}/edit', [LibraryBookController::class, 'edit'])->name('edit');
+            Route::put('/{book}', [LibraryBookController::class, 'update'])->name('update');
+            Route::delete('/{book}', [LibraryBookController::class, 'destroy'])->name('destroy');
+
+            // Bulk import routes
+            Route::get('/import', [LibraryBookController::class, 'import'])->name('import');
+            Route::post('/import', [LibraryBookController::class, 'processImport'])->name('import.process');
+            Route::get('/template', [LibraryBookController::class, 'downloadTemplate'])->name('template');
+        });
+
+        // Transactions routes
+        Route::resource('transactions', LibraryTransactionController::class);
+        Route::post('transactions/{id}/return', [LibraryTransactionController::class, 'returnBook'])->name('transactions.return');
+    });
+
+    // Other resource routes
     Route::resource('students', StudentController::class);
     Route::resource('teachers', TeacherController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('class-rooms', ClassRoomController::class);
-}); // <-- This closes the auth middleware group
+});
 
 require __DIR__.'/auth.php';
